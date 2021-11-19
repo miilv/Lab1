@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Lab1
 {
-    public abstract class V2Data
+    public abstract class V2Data : IEnumerable<DataItem>
     {
-        public string objId { get; }
-        public DateTime timing { get; }
+        public string objId { get; protected set; }
+        public DateTime timing { get; protected set; }
         public V2Data(string objId, DateTime timing)
         {
             this.objId = objId;
@@ -21,6 +22,13 @@ namespace Lab1
         public override string ToString()
         {
             return ($"object: {objId}, date: {timing}");
+        }
+
+        public abstract IEnumerator<DataItem> GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
