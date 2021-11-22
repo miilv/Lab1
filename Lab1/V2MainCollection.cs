@@ -72,6 +72,33 @@ namespace Lab1
             }
         }
 
+
+        public float MaxDistanceCollection
+        {
+            get
+            {
+                if (broadList.Count() == 0)
+                {
+                    return float.NaN;
+                }
+                var xy = from data in broadList
+                          where data.Count() != 0
+                          from el in data
+                          select el.coords;
+
+                if (xy.Count() == 0)
+                {
+                    return float.NaN;
+                }
+
+                var dist = from el1 in xy
+                           from el2 in xy
+                           select Vector2.Distance(el1, el2);
+
+                return dist.ToList().Max();
+            }
+        }
+
         //Cвойство типа IEnumerable<Vector2>, которое перечисляет все точки, где измерено
         //поле, и которые встречаются среди всех результатов измерений в коллекции
         //V2MainCollection только один раз.Если в коллекции нет элементов или в коллекции
@@ -112,7 +139,7 @@ namespace Lab1
                 var lists = (
                     from collection in broadList
                     let list = collection as V2DataList
-                    where list != null && (from el in list where el.coords.Y == 0 select el.coords).Count() == 0
+                    where list != null && (from el in list where el.fieldStrength.Imaginary == 0 select el.fieldStrength).Count() == 0
                     select list
                     );
                 if (lists.Count() == 0)

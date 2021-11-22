@@ -42,7 +42,7 @@ namespace Lab1
 
             Lab 2
             */
-            TestFilesavingFeature();
+            //TestFilesavingFeature();
             TestLINQrequests();
 
  
@@ -76,79 +76,97 @@ namespace Lab1
         }
         static void TestLINQrequests()
         {
-            Console.WriteLine("\nLINQ REQUESTS\n");
+            Console.WriteLine("\n============== LINQ REQUESTS ================\n");
             V2DataArray emptyArray = new V2DataArray("nothing in here", DateTime.UtcNow);
             V2DataList emptyList = new V2DataList("nothing in here x2", DateTime.UtcNow);
             Fv2Complex F = StaticClass.noize1;
-            V2DataArray randomArray = new V2DataArray("random Array", DateTime.Now, 2, 3, new System.Numerics.Vector2(3, 7), F);
+            V2DataArray randomArray = new V2DataArray("random Array", DateTime.Now, 2, 3, new System.Numerics.Vector2(1, 2), F);
             V2DataList randomList = new V2DataList("random List", DateTime.UtcNow);
             randomList.Add(new DataItem(new Vector2(2, 1), 0));
-            randomList.Add(new DataItem(new Vector2(0, 1), 3));
-            randomList.Add(new DataItem(new Vector2(1, 7), 5));
-            randomList.Add(new DataItem(new Vector2(-3, 4), 10));
+            randomList.Add(new DataItem(new Vector2(-3, -4), new Complex(3, -5)));
             randomList.Add(new DataItem(new Vector2(-1, 0), 1));
 
             V2MainCollection CollectionLINQ_1 = new V2MainCollection();
-            Console.WriteLine("1. MinDistanceCollection");
-            Console.WriteLine($"\tEmpty collection: {CollectionLINQ_1.MinDistanceCollection}");
+            Console.WriteLine("\n1. MaxDistanceCollection");
+            Console.WriteLine(" =======[Test 1]==========");
+            Console.WriteLine($"\tEmpty collection: {CollectionLINQ_1.MaxDistanceCollection}");
             CollectionLINQ_1.Add(emptyArray);
-            Console.WriteLine($"\tEmpty array in the collection: {CollectionLINQ_1.MinDistanceCollection}");
+            Console.WriteLine(" =======[Test 2]==========");
+            Console.WriteLine($"\tEmpty array in the collection: {CollectionLINQ_1.MaxDistanceCollection}");
             CollectionLINQ_1.Add(emptyList);
-            Console.WriteLine($"\tAdding an empty List to the collection: {CollectionLINQ_1.MinDistanceCollection}");
+            Console.WriteLine(" =======[Test 3]==========");
+            Console.WriteLine($"\tAdding an empty List to the collection: {CollectionLINQ_1.MaxDistanceCollection}");
             CollectionLINQ_1.Add(randomArray);
-            Console.WriteLine($"\tAdding an array with {randomArray.MinDistance} minimal distance to the collection: {CollectionLINQ_1.MinDistanceCollection}");
+            Console.WriteLine(" =======[Test 4]==========");
+            Console.WriteLine($"\tAdding an array to the collection:");
+            Console.WriteLine(CollectionLINQ_1.ToLongString("F2"));
+            Console.WriteLine($"\tRes: {CollectionLINQ_1.MaxDistanceCollection}\n\n");
             CollectionLINQ_1.Add(randomList);
-            Console.WriteLine($"\tAdding a list with {randomList.MinDistance} minimal distance to the collection: {CollectionLINQ_1.MinDistanceCollection}");
+            Console.WriteLine(" =======[Test 5]==========");
+            Console.WriteLine($"\tAdding a list to the collection:");
+            Console.WriteLine(CollectionLINQ_1.ToLongString("F2"));
+            Console.WriteLine($"\tRes: {CollectionLINQ_1.MaxDistanceCollection}\n\n");
 
-            V2MainCollection CollectionLINQ_2 = new V2MainCollection();
-            Console.WriteLine("\n3. UniqPoints");
-            Console.WriteLine("\tEmpty collection:");
-            WriteSeq(CollectionLINQ_2.UniqPoints);
-            CollectionLINQ_2.Add(emptyArray);
-            Console.WriteLine("\tAddding an empty array to the collection:");
-            WriteSeq(CollectionLINQ_2.UniqPoints);
-            CollectionLINQ_2.Add(emptyList);
-            Console.WriteLine("\tAddding an empty List to the collection:");
-            WriteSeq(CollectionLINQ_2.UniqPoints);
-            CollectionLINQ_2.Add(randomArray);
-            Console.WriteLine("\tAdding an array to the collection:");
-            WriteSeq(CollectionLINQ_2.UniqPoints);
-            V2DataArray randomArrayCopy = new V2DataArray("random Array copy", DateTime.Now, 2, 3, new System.Numerics.Vector2(3, 7), F);
-            CollectionLINQ_2.Add(randomArrayCopy);
-            Console.WriteLine("\tAdding the same array to the collection:");
-            WriteSeq(CollectionLINQ_2.UniqPoints);
-            CollectionLINQ_2.Add(randomList);
-            Console.WriteLine("\tAdding a list to the collection:");
-            WriteSeq(CollectionLINQ_2.UniqPoints);
-            V2DataList intersectList = new V2DataList("intersecting List", DateTime.UtcNow);
-            randomList.Add(new DataItem(new Vector2(3, 4), 1));
-            randomList.Add(new DataItem(new Vector2(0, 1), 3));
-            randomList.Add(new DataItem(new Vector2(1, 7), 5));
-            randomList.Add(new DataItem(new Vector2(-3, 0), 3));
-            CollectionLINQ_2.Add(randomList);
-            Console.WriteLine("\tAdding a list of size 4 with intersecting points to the collection:");
-            WriteSeq(CollectionLINQ_2.UniqPoints);
+            //Console.WriteLine("\n_________________\n");
+            //V2MainCollection CollectionLINQ_2 = new V2MainCollection();
+            //Console.WriteLine("2. UniqPoints");
+            //Console.WriteLine("\tEmpty collection:");
+            //WriteSeq(CollectionLINQ_2.UniqPoints);
+            //CollectionLINQ_2.Add(emptyArray);
+            //Console.WriteLine("\tAddding an empty array to the collection:");
+            //WriteSeq(CollectionLINQ_2.UniqPoints);
+            //CollectionLINQ_2.Add(emptyList);
+            //Console.WriteLine("\tAddding an empty List to the collection:");
+            //WriteSeq(CollectionLINQ_2.UniqPoints);
+            //CollectionLINQ_2.Add(randomArray);
+            //Console.WriteLine("\tAdding an array to the collection:");
+            //WriteSeq(CollectionLINQ_2.UniqPoints);
+            //V2DataArray randomArrayCopy = new V2DataArray("random Array copy", DateTime.Now, 2, 3, new System.Numerics.Vector2(3, 7), F);
+            //CollectionLINQ_2.Add(randomArrayCopy);
+            //Console.WriteLine("\tAdding the same array to the collection:");
+            //WriteSeq(CollectionLINQ_2.UniqPoints);
+            //CollectionLINQ_2.Add(randomList);
+            //Console.WriteLine("\tAdding a list to the collection:");
+            //WriteSeq(CollectionLINQ_2.UniqPoints);
+            //V2DataList intersectList = new V2DataList("intersecting List", DateTime.UtcNow);
+            //randomList.Add(new DataItem(new Vector2(-3, 4), 1));
+            //randomList.Add(new DataItem(new Vector2(0, 1), new Complex(1, -5)));
+            //randomList.Add(new DataItem(new Vector2(1, 3), 5));
+            //randomList.Add(new DataItem(new Vector2(-3, 0), new Complex(3, 1)));
+            //CollectionLINQ_2.Add(randomList);
+            //Console.WriteLine("\tAdding a list of size 4 with intersecting points to the collection:");
+            //WriteSeq(CollectionLINQ_2.UniqPoints);
 
+            Console.WriteLine("\n\n____________________________________________________\n");
             V2MainCollection CollectionLINQ_3 = new V2MainCollection();
-            Console.WriteLine("\n3. ComplexList");
+            Console.WriteLine("3. ComplexList");
+            Console.WriteLine(" =======[Test 1]==========");
             Console.WriteLine("\tEmpty collection:");
             WriteSeq(CollectionLINQ_3.ComplexList);
+            Console.WriteLine(" =======[Test 2]==========");
             CollectionLINQ_3.Add(randomArray);
             Console.WriteLine("\tArray in the collection:");
             WriteSeq(CollectionLINQ_3.ComplexList);
+            Console.WriteLine(" =======[Test 3]==========");
             CollectionLINQ_3.Add(emptyList);
             Console.WriteLine("\tAdding an empty List to the collection:");
             WriteSeq(CollectionLINQ_3.ComplexList);
             CollectionLINQ_3.Add(randomList);
-            Console.WriteLine("\tAdding a list with non-complex elements to the collection:");
+            Console.WriteLine(" =======[Test 4]==========");
+            Console.WriteLine("\n\tAdding a list with non-complex elements to the collection:");
+            Console.WriteLine(CollectionLINQ_3.ToLongString("F2"));
+            Console.WriteLine("\tAnswer:");
             WriteSeq(CollectionLINQ_3.ComplexList);
             V2DataList targetList = new V2DataList("complex List", DateTime.UtcNow);
-            targetList.Add(new DataItem(new Vector2(0, 1), 0));
-            targetList.Add(new DataItem(new Vector2(1, 2), 3));
-            targetList.Add(new DataItem(new Vector2(2, 3), 5));
-            targetList.Add(new DataItem(new Vector2(3, 4), 10));
+            targetList.Add(new DataItem(new Vector2(0, 1), new Complex(1, -5)));
+            targetList.Add(new DataItem(new Vector2(1, 2), new Complex(2, 3)));
+            targetList.Add(new DataItem(new Vector2(2, 3), new Complex(0, -7)));
+            targetList.Add(new DataItem(new Vector2(3, 4), new Complex(3, 3)));
             CollectionLINQ_3.Add(targetList);
-            Console.WriteLine("\tAdding a list with only complex elements to the collection:");
+            Console.WriteLine(" =======[Test 5]==========");
+            Console.WriteLine("\n\tAdding a list with only complex elements to the collection:");
+            Console.WriteLine(CollectionLINQ_3.ToLongString("F2"));
+            Console.WriteLine("\tAnswer:");
             WriteSeq(CollectionLINQ_3.ComplexList);
         }   
 
